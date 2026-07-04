@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import BookCard from "../shared/BookCard";
 import { getAllPublishedBooks } from "@/lib/api/books";
 import Link from "next/link";
-// 🎯 আপনার দেওয়া কাঙ্ক্ষিত আইকনটি রিয়্যাক্ট-আইকনস থেকে ইম্পোর্ট করে নিলাম ভাই
 import { IoIosArrowDroprightCircle } from "react-icons/io";
 
 export default function FeaturedBooks() {
@@ -17,7 +16,7 @@ export default function FeaturedBooks() {
         setLoading(true);
         const data = await getAllPublishedBooks();
 
-        console.log("Featured Books Buffer Logs:", data);
+        // console.log("Featured Books Buffer Logs:", data);
         setBooksData(data);
       } catch (error) {
         console.error("Error fetching books:", error);

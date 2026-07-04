@@ -30,8 +30,8 @@ export default function SignupForm() {
     email: "",
     password: "",
     confirmPassword: "",
-    photoUrl: "", // 🚀 imgBB থেকে পাওয়া লিঙ্কটি এখানেই সেভ হবে ভাই
-    role: "user", // ডক অনুযায়ী strictly "user" ( যা UI তে Reader)
+    photoUrl: "",
+    role: "user",
   });
 
   const [loading, setLoading] = useState(false);
@@ -128,7 +128,7 @@ export default function SignupForm() {
       });
     }
 
-    // ছবি আপলোড সম্পূর্ণ হওয়ার জন্য অপেক্ষা করতে বলব ভাই
+    // ছবি আপলোড সম্পূর্ণ হওয়ার জন্য অপেক্ষা
     if (uploadingImage) {
       return toast.warn("Please wait until the image upload finishes! ⏳");
     }
@@ -136,18 +136,37 @@ export default function SignupForm() {
     setLoading(true);
 
     try {
-      await authClient.signUp.email({
-        email: formData.email,
-        password: formData.password,
-        name: formData.name,
-        image: formData.photoUrl || "https://ibb.co/pTrv3HT",
-        role: formData.role,
-        fetchOptions: {
-          onSuccess: () => {
-            toast.success(
-              `Welcome  Registered successfully as ${formData.role === "librarian" ? "Librarian" : "Reader"}!`,
-              { position: "top-right", autoClose: 2000 },
-            );
+      await authClient.signUp.email(
+        {
+          email: formData.email,
+          password: formData.password,
+          name: formData.name,
+          image: formData.photoUrl || "https://ibb.co/pTrv3HT",
+          role: formData.role,
+        },
+        {
+          onSuccess: async (ctx) => {
+            if (ctx?.data?.token || ctx?.data?.user) {
+              fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/send-email`, {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                  email: formData.email,
+                  name: formData.name,
+                  image: formData.photoUrl,
+                  role: formData.role,
+                }),
+              }).catch((err) => console.error("Error sending email:", err));
+
+              toast.success(
+                `Welcome  Registered successfully as ${formData.role === "librarian" ? "Librarian" : "Reader"}!`,
+                { position: "top-right", autoClose: 2000 },
+              );
+            }
+
+            setLoading(false);
             router.push("/");
             router.refresh();
           },
@@ -157,7 +176,7 @@ export default function SignupForm() {
             );
           },
         },
-      });
+      );
     } catch (error) {
       toast.error(error?.message || "Internal network synchronizer error! ");
     } finally {
