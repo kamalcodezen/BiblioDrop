@@ -2,6 +2,7 @@ import { Urbanist, Poppins } from "next/font/google";
 import "./globals.css";
 import Providers from "@/providers/theme-provider";
 import { ToastContainer } from 'react-toastify';
+import SmoothScroll from "@/components/modules/shared/SmoothScroll";
 
 
 // বডি টেক্সটের জন্য আরবানিস্ট ফন্ট লোড
@@ -48,9 +49,11 @@ export default function RootLayout({ children }) {
         }}
       >
         <Providers>
-          <main className="min-h-screen transition-colors duration-300">
-            {children}
-          </main>
+          <SmoothScroll>
+            <main className="min-h-screen transition-colors duration-300">
+              {children}
+            </main>
+          </SmoothScroll>
         </Providers>
         <ToastContainer />
       </body>

@@ -1,6 +1,19 @@
 @import "tailwindcss";
 @import "@heroui/styles";
 
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
 /* =========================================
    LIGHT THEME 
 ========================================= */
