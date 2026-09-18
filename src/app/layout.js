@@ -3,6 +3,7 @@ import "./globals.css";
 import Providers from "@/providers/theme-provider";
 import { ToastContainer } from 'react-toastify';
 import SmoothScroll from "@/components/modules/shared/SmoothScroll";
+import BiblioBot from "@/components/modules/ai/BiblioBot";
 
 
 // বডি টেক্সটের জন্য আরবানিস্ট ফন্ট লোড
@@ -54,6 +55,7 @@ export default function RootLayout({ children }) {
               {children}
             </main>
           </SmoothScroll>
+          <BiblioBot />
         </Providers>
         <ToastContainer />
       </body>
