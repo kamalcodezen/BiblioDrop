@@ -172,38 +172,28 @@ export default function AllBooks({ allBooks = [], filters }) {
 
       <AnimatePresence mode="popLayout">
         {paginatedBooks.length > 0 ? (
-          <>
-            <motion.div
-              key="grid"
-              variants={containerVariants}
-              initial="hidden"
-              animate="show"
-              className="w-11/12 mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-10 mt-4 items-start"
-            >
-              {paginatedBooks.map((bookItem, index) => (
-                <motion.div
-                  key={bookItem._id || `book-fallback-key-${index}`}
-                  variants={cardVariants}
-                  layout
-                  className="h-full"
-                >
-                  <BookCard book={bookItem} />
-                </motion.div>
-              ))}
-            </motion.div>
-
-            <Pagination
-              page={serverMeta ? serverMeta.currentPage : page}
-              total={totalPages}
-              onChange={(newPage) => setPage(newPage)}
-              color="success"
-              showShadow={true}
-              isCompact={true}
-            />
-          </>
+          <motion.div
+            key="books-grid"
+            variants={containerVariants}
+            initial="hidden"
+            animate="show"
+            exit={{ opacity: 0 }}
+            className="w-11/12 mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-10 mt-4 items-start"
+          >
+            {paginatedBooks.map((bookItem, index) => (
+              <motion.div
+                key={bookItem?._id || bookItem?.id || `book-fallback-key-${index}`}
+                variants={cardVariants}
+                layout
+                className="h-full"
+              >
+                <BookCard book={bookItem} />
+              </motion.div>
+            ))}
+          </motion.div>
         ) : (
           <motion.div
-            key="empty"
+            key="books-empty"
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0 }}
@@ -233,13 +223,24 @@ export default function AllBooks({ allBooks = [], filters }) {
             </button>
           </motion.div>
         )}
-
-        <div className="mb-4 text-base sm:text-sm font-semibold text-muted-foreground uppercase tracking-wider px-2 pt-8">
-          Showing {paginatedBooks.length} of{" "}
-          {serverMeta ? serverMeta.totalItems : books.length} available
-          repository items
-        </div>
       </AnimatePresence>
+
+      {paginatedBooks.length > 0 && (
+        <Pagination
+          page={serverMeta ? serverMeta.currentPage : page}
+          total={totalPages}
+          onChange={(newPage) => setPage(newPage)}
+          color="success"
+          showShadow={true}
+          isCompact={true}
+        />
+      )}
+
+      <div className="mb-4 text-base sm:text-sm font-semibold text-muted-foreground uppercase tracking-wider px-2 pt-8">
+        Showing {paginatedBooks.length} of{" "}
+        {serverMeta ? serverMeta.totalItems : books.length} available
+        repository items
+      </div>
     </>
   );
 }

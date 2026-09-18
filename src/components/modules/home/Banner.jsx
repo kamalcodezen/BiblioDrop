@@ -11,7 +11,7 @@ import Link from "next/link";
 
 const Banner = () => {
   return (
-    <section className="relative h-screen overflow-hidden bg-background text-foreground">
+    <section suppressHydrationWarning className="relative h-screen overflow-hidden bg-background text-foreground">
       <Swiper
         spaceBetween={0}
         centeredSlides={true}
@@ -61,6 +61,7 @@ const Banner = () => {
                     <Link href="/books">
                       <motion.button
                         whileTap={{ scale: 0.95 }}
+                        suppressHydrationWarning
                         className="btn-primary cursor-pointer shadow-xl flex items-center gap-2"
                       >
                         <span>Browse Books</span>
@@ -69,6 +70,7 @@ const Banner = () => {
                     </Link>
                     <motion.button
                       whileTap={{ scale: 0.95 }}
+                      suppressHydrationWarning
                       className="btn-secondary bg-white/50 dark:bg-transparent border border-primary text-foreground cursor-pointer"
                     >
                       Learn More
@@ -124,6 +126,7 @@ const Banner = () => {
                     <Link href="/books">
                       <motion.button
                         whileTap={{ scale: 0.95 }}
+                        suppressHydrationWarning
                         className="btn-primary cursor-pointer shadow-lg"
                       >
                         Browse Books

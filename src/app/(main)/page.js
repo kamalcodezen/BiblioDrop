@@ -7,7 +7,6 @@ import PopularCategories from "@/components/modules/home/PopularCategories";
 import StatsSection from "@/components/modules/home/StatsSection";
 import TopLibrarians from "@/components/modules/home/TopLibrarians";
 
-
 export default function HomePage() {
   return (
     <>

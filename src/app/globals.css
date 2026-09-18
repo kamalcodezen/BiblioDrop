@@ -256,3 +256,96 @@ button {
 .dark .hero-gradient {
   background: radial-gradient(circle at top left, rgba(0, 245, 212, 0.12), transparent 40%);
 }
+
+/* =========================================
+   DELIVERY TRUCK LOADER ANIMATIONS
+========================================= */
+@keyframes truckDriveAhead {
+  0% {
+    transform: translateX(-25%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes wheelSpin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes truckBounce {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-1px);
+  }
+}
+
+@keyframes roadMove {
+  0% {
+    transform: translateX(0px);
+  }
+  100% {
+    transform: translateX(-10px);
+  }
+}
+
+@keyframes smoke {
+  0% {
+    transform: translate(0, 0) scale(0.5);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translate(-30px, -15px) scale(1.5);
+    opacity: 0;
+  }
+}
+
+@keyframes shadowPulse {
+  0%,
+  100% {
+    transform: scaleX(1);
+  }
+  50% {
+    transform: scaleX(0.95);
+  }
+}
+
+.loader-road-move {
+  animation: roadMove 0.3s linear infinite !important;
+}
+
+.loader-truck-drive {
+  animation: truckDriveAhead 4s linear infinite !important;
+}
+
+.loader-truck-bounce {
+  animation: truckBounce 0.2s ease-in-out infinite !important;
+}
+
+.loader-smoke-1 {
+  animation: smoke 0.4s ease-out infinite 0s !important;
+}
+
+.loader-smoke-2 {
+  animation: smoke 0.4s ease-out infinite 0.1s !important;
+}
+
+.loader-smoke-3 {
+  animation: smoke 0.4s ease-out infinite 0.2s !important;
+}
+
+.loader-wheel-spin {
+  animation: wheelSpin 0.3s linear infinite !important;
+}
+
+.loader-shadow-pulse {
+  animation: shadowPulse 0.2s ease-in-out infinite !important;
+}

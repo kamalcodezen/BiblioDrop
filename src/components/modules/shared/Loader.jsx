@@ -10,20 +10,25 @@ export default function Loader() {
         {/* height road speed line */}
         <div className="absolute bottom-6 left-0 w-full h-[3px] bg-foreground/10 overflow-hidden">
           <div
-            className="w-[200%] h-full bg-repeating-linear-gradient animate-[roadMove_0.3s_linear_infinite]"
+            className="w-[200%] h-full bg-repeating-linear-gradient loader-road-move"
             style={{
               backgroundImage:
                 "linear-gradient(90deg, currentColor 0px, currentColor 25px, transparent 25px, transparent 50px)",
               color: "rgb(var(--border))",
+              animation: "roadMove 0.3s linear infinite",
             }}
           />
         </div>
 
-        <div className="w-full h-full flex items-end justify-start relative animate-[truckDriveAhead_4s_linear_infinite]">
+        <div
+          className="w-full h-full flex items-end justify-start relative loader-truck-drive"
+          style={{ animation: "truckDriveAhead 4s linear infinite" }}
+        >
           {/* relative truck*/}
           <svg
             viewBox="0 0 220 100"
-            className="w-52 h-26 mb-4 relative z-10 animate-[truckBounce_0.2s_ease-in-out_infinite]"
+            className="w-52 h-26 mb-4 relative z-10 loader-truck-bounce"
+            style={{ animation: "truckBounce 0.2s ease-in-out infinite" }}
           >
             {/* dynamic headlight glow*/}
             <polygon
@@ -67,22 +72,31 @@ export default function Loader() {
                 cx="22"
                 cy="74"
                 r="3"
-                className="animate-[smoke_0.4s_ease-out_infinite_0s]"
-                style={{ transformOrigin: "22px 74px" }}
+                className="loader-smoke-1"
+                style={{
+                  transformOrigin: "22px 74px",
+                  animation: "smoke 0.4s ease-out infinite 0s",
+                }}
               />
               <circle
                 cx="18"
                 cy="73"
                 r="4.5"
-                className="animate-[smoke_0.4s_ease-out_infinite_0.1s]"
-                style={{ transformOrigin: "18px 73px" }}
+                className="loader-smoke-2"
+                style={{
+                  transformOrigin: "18px 73px",
+                  animation: "smoke 0.4s ease-out infinite 0.1s",
+                }}
               />
               <circle
                 cx="14"
                 cy="72"
                 r="6"
-                className="animate-[smoke_0.4s_ease-out_infinite_0.2s]"
-                style={{ transformOrigin: "14px 72px" }}
+                className="loader-smoke-3"
+                style={{
+                  transformOrigin: "14px 72px",
+                  animation: "smoke 0.4s ease-out infinite 0.2s",
+                }}
               />
             </g>
 
@@ -145,8 +159,11 @@ export default function Loader() {
 
             {/* back wheel*/}
             <g
-              className="animate-[wheelSpin_0.3s_linear_infinite]"
-              style={{ transformOrigin: "55px 75px" }}
+              className="loader-wheel-spin"
+              style={{
+                transformOrigin: "55px 75px",
+                animation: "wheelSpin 0.3s linear infinite",
+              }}
             >
               <circle
                 cx="55"
@@ -177,8 +194,11 @@ export default function Loader() {
 
             {/* front wheel*/}
             <g
-              className="animate-[wheelSpin_0.3s_linear_infinite]"
-              style={{ transformOrigin: "135px 75px" }}
+              className="loader-wheel-spin"
+              style={{
+                transformOrigin: "135px 75px",
+                animation: "wheelSpin 0.3s linear infinite",
+              }}
             >
               <circle
                 cx="135"
@@ -209,7 +229,10 @@ export default function Loader() {
           </svg>
 
           {/* chaka wheel*/}
-          <div className="absolute bottom-[22px] left-[36px] w-36 h-[4px] bg-black/20 rounded-full blur-[2px] animate-[shadowPulse_0.2s_ease-in-out_infinite]" />
+          <div
+            className="absolute bottom-[22px] left-[36px] w-36 h-[4px] bg-black/20 rounded-full blur-[2px] loader-shadow-pulse"
+            style={{ animation: "shadowPulse 0.2s ease-in-out infinite" }}
+          />
         </div>
       </div>
 
@@ -218,7 +241,8 @@ export default function Loader() {
         BiblioDrop Delivering...
       </p>
 
-      <style jsx global>{`
+      {/* Standard HTML style tag for guaranteed animations */}
+      <style>{`
         @keyframes truckDriveAhead {
           0% {
             transform: translateX(-25%);

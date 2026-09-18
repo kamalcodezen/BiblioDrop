@@ -173,10 +173,12 @@ export default function Footer() {
                 placeholder="Enter your email"
                 className="input-field pr-10 !text-base sm:text-sm !h-10 !rounded-lg"
                 required
+                suppressHydrationWarning
               />
               <button
                 type="button"
                 className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-primary transition-colors cursor-pointer"
+                suppressHydrationWarning
               >
                 <FiSend size={14} />
               </button>
