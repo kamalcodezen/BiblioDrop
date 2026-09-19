@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { Sparkles } from "lucide-react";
 
 const BookCard = ({ book }) => {
   return (
@@ -33,6 +34,17 @@ const BookCard = ({ book }) => {
               by {book?.author || "Unknown Author"}
             </p>
           </div>
+
+          {/* AI Match Reason Badge */}
+          {book?.matchReason && (
+            <div
+              className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-primary/15 border border-primary/30 text-primary text-[11px] font-bold font-poppins"
+              title={book.matchReason}
+            >
+              <Sparkles size={12} className="shrink-0 text-primary animate-pulse" />
+              <span className="truncate">{book.matchReason}</span>
+            </div>
+          )}
 
           {/* Category + Fee */}
           <div className="flex items-center justify-between rounded-xl border border-border/40 bg-card-soft/50 px-4 py-3">

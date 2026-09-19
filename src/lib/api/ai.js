@@ -62,4 +62,20 @@ export async function fetchBookInsights({ title, author, category, description }
   return response.json();
 }
 
+export async function searchBooksByMood(query) {
+  const response = await fetch(`${baseUrl}/api/ai/semantic-search`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ query }),
+  });
+
+  if (!response.ok) {
+    const errorData = await response.json().catch(() => ({}));
+    throw new Error(errorData.error || "Failed to perform AI mood search");
+  }
+
+  return response.json();
+}
 
