@@ -22,3 +22,24 @@ export async function sendChatMessage(message, history = []) {
   return response.json();
 }
 
+/**
+ * Scans a book cover image via Multimodal AI to extract title, author, category, fee, and synopsis
+ */
+export async function scanBookCover(imageBase64, mimeType = "image/jpeg") {
+  const response = await fetch(`${baseUrl}/api/ai/scan-cover`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ image: imageBase64, mimeType }),
+  });
+
+  if (!response.ok) {
+    const errorData = await response.json().catch(() => ({}));
+    throw new Error(errorData.error || "Failed to scan book cover");
+  }
+
+  return response.json();
+}
+
+
