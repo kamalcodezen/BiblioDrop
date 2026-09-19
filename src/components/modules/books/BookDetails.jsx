@@ -28,6 +28,7 @@ import DeletedAssetScreen from "./DeletedAssetScreen";
 import { toast } from "react-toastify";
 import Loader from "../shared/Loader";
 import { toggleBooksStatusById } from "@/lib/actions/librarian";
+import AIInsightsCard from "./AIInsightsCard";
 
 export default function BookDetails({ books, userComments }) {
   const router = useRouter();
@@ -225,6 +226,9 @@ export default function BookDetails({ books, userComments }) {
                   "No index description is registered for this ledger asset."}
               </p>
             </div>
+
+            {/* ✨ AI Reader Insights ("Should I Read This?") */}
+            <AIInsightsCard book={books} />
           </div>
 
           <div className="mt-10 space-y-6">

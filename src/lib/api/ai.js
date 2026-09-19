@@ -42,4 +42,24 @@ export async function scanBookCover(imageBase64, mimeType = "image/jpeg") {
   return response.json();
 }
 
+/**
+ * Fetches AI reader decision insights ("Should I Read This?") for BookDetails page
+ */
+export async function fetchBookInsights({ title, author, category, description }) {
+  const response = await fetch(`${baseUrl}/api/ai/book-insights`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ title, author, category, description }),
+  });
+
+  if (!response.ok) {
+    const errorData = await response.json().catch(() => ({}));
+    throw new Error(errorData.error || "Failed to generate book insights");
+  }
+
+  return response.json();
+}
+
 
